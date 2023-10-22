@@ -14,7 +14,7 @@ npm i # dans le dossier backend (pour chaque micro-services) et frontend
 ```
 ## Ne pas oublier de lancer RabbitMQ et MySQL
 
-créer une base de donnée `yt_node_admin`, `users` dans MySQL
+créer une base de donnée `yt_node_admin`, `users`, `order_product` dans MySQL
 
 ## Lancement
 ```bash
