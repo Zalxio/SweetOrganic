@@ -14,23 +14,23 @@ const ProductList = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get('/api/products');
+    const response = await axios.get('/apip/products');
     setProducts(response.data);
   };
 
   const createProduct = async () => {
-    await axios.post('/api/products', newProduct);
+    await axios.post('/apip/products', newProduct);
     fetchProducts();
   };
 
   const updateProduct = async (id, updatedProduct) => {
-    await axios.put(`/api/products/${id}`, updatedProduct);
+    await axios.put(`/apip/products/${id}`, updatedProduct);
     setEditProduct(null);
     fetchProducts();
   };
 
   const deleteProduct = async (id) => {
-    await axios.delete(`/api/products/${id}`);
+    await axios.delete(`/apip/products/${id}`);
     fetchProducts();
   };
 

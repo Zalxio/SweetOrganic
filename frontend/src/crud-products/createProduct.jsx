@@ -12,12 +12,12 @@ const createProduct = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get('/api/products');
+    const response = await axios.get('/apip/products');
     setProducts(response.data);
   };
 
   const createProduct = async () => {
-    await axios.post('/api/products', { title, image });
+    await axios.post('/apip/products', { title, image });
     fetchProducts();
   };
 

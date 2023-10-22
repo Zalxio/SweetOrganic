@@ -8,7 +8,7 @@ const UpdateProduct = () => {
   const [id, setId] = useState('');
 
   const updateProduct = async () => {
-    await axios.put(`/api/products/${id}`, { title, image });
+    await axios.put(`/apip/products/${id}`, { title, image });
   };
 
   return (

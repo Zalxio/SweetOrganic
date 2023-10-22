@@ -2,19 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
-const DeleteProduct = () => {
+const DeleteUser = () => {
   const [id, setId] = useState('');
 
-  const deleteProduct = async () => {
-    await axios.delete(`/apip/products/${id}`);
+  const deleteUser = async () => {
+    await axios.delete(`/apiu/users/${id}`);
   };
 
   return (
     <>
         <input value={id} onChange={e => setId(e.target.value)} placeholder="ID" />
-        <button onClick={deleteProduct}>Supprimer</button>
+        <button onClick={deleteUser}>Supprimer</button>
     </>
   );
 };
 
-export default DeleteProduct;
+export default DeleteUser;

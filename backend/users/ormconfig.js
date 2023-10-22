@@ -1,0 +1,24 @@
+module.exports = {
+    "type": "mysql",
+    "host": process.env.HOST_BBDD || "localhost",
+    "port": process.env.PORT_BBDD || 3306,
+    "username": process.env.USER_BBDD || "root",
+    "password": process.env.PASSWORD_BBDD || "",
+    "database": process.env.DATABASE_BBDD || "users",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+       "src/entity/*.js"
+    ],
+    "migrations": [
+       "src/migration/*.js"
+    ],
+    "subscribers": [
+       "src/subscriber/*.js"
+    ],
+    "cli": {
+       "entitiesDir": "common/entity",
+       "migrationsDir": "common/migration",
+       "subscribersDir": "common/subscriber"
+    }
+ }
