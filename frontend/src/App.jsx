@@ -10,6 +10,7 @@ import GetUser from './crud-users/getUser';
 import CreateUser from './crud-users/createUser';
 import DeleteUser from './crud-users/deleteUser';
 import UpdateUser from './crud-users/updateUser';
+import UserList from './crud-users/UserList';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/deleteProduct" element={<DeleteProduct />} />
         <Route path="/updateProduct" element={<UpdateProduct />} />
         <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/UserList" element={<UserList />} />
         <Route path="/getUser" element={<GetUser />} />
         <Route path="/createUser" element={<CreateUser />} />
         <Route path="/deleteUser" element={<DeleteUser />} />
