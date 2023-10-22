@@ -48,6 +48,10 @@ http://localhost:5173/deleteProduct # DELETE (Supprimer un produit)
 ### Micro-service `user`
 
 ```bash	
+http://localhost:5173/UserList # (Dashboard de tous les utilisateurs)
+```
+
+```bash	
 http://localhost:5173/getUser # GET (Récupérer tous les utilisateurs)
 ```
 ```bash
