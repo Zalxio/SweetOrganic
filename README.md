@@ -8,6 +8,9 @@ Dans le dossier `frontend` et `backend`
 > Docker
 > ViteJS
 
+Pour crypter les mdp on utilise bcryptJS
+https://www.npmjs.com/package/bcrypt
+
 ## Installation
 ```bash
 npm i # dans le dossier backend (pour chaque micro-services) et frontend
