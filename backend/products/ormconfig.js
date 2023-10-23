@@ -1,9 +1,9 @@
 module.exports = {
     "type": "mysql",
-    "host": process.env.HOST_BBDD || "localhost",
+    "host": process.env.HOST_BBDD || "127.0.0.1",
     "port": process.env.PORT_BBDD || 3306,
-    "username": process.env.USER_BBDD || "root",
-    "password": process.env.PASSWORD_BBDD || "",
+    "username": process.env.USER_BBDD || "sweetorganic",
+    "password": process.env.PASSWORD_BBDD || "sweetorganic",
     "database": process.env.DATABASE_BBDD || "yt_node_admin",
     "synchronize": true,
     "logging": false,
