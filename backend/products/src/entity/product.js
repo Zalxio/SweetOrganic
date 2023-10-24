@@ -13,7 +13,8 @@ const ProductSchema = new EntitySchema({
             type: 'varchar'
         },
         image: {
-            type: 'varchar'
+            type: 'varchar',
+            default: '' // Valeur par défaut : chaîne vide
         },
         likes: {
             type: 'int',

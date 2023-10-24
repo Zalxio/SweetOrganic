@@ -20,6 +20,17 @@ exports.postProducts = async function (req, res) {
     return res.send(result);
 };
 
+/*exports.postProducts = async function (req, res) {
+    const product = await productRepository.create(req.body);
+    
+    if (req.file) {
+        product.image = req.file.path; // Sauvegardez le chemin du fichier image dans la base de données
+    }
+
+    const result = await productRepository.save(product);
+    return res.send(result);
+};*/
+
 // retourne un produit
 exports.getProduct = async function (req, res) {
     const product = await productRepository.findOne(req.params.id);

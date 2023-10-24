@@ -8,6 +8,7 @@ export default defineConfig({
     proxy: {
       '/apip': 'http://localhost:8000',
       '/apiu': 'http://localhost:8001',
+      '/apio': 'http://localhost:8002',
     }
   }
 })

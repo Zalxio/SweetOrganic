@@ -23,6 +23,21 @@ const ProductList = () => {
     fetchProducts();
   };
 
+  /*const createProduct = async () => {
+    // Assurez-vous que les champs title et image sont remplis avant de créer le produit
+    if (newProduct.title && newProduct.image) {
+      const formData = new FormData();
+      formData.append('title', newProduct.title);
+      formData.append('image', newProduct.image);
+  
+      await axios.post('/apip/products', formData);
+      fetchProducts();
+    } else {
+      // Gérez l'erreur ou affichez un message à l'utilisateur
+      console.error("Le titre et l'image sont requis.");
+    }
+  };*/
+
   const updateProduct = async (id, updatedProduct) => {
     await axios.put(`/apip/products/${id}`, updatedProduct);
     setEditProduct(null);
@@ -46,6 +61,7 @@ const ProductList = () => {
       <h1>Produits</h1>
       <div className="product-form">
         <input
+          type='text'
           value={newProduct.title}
           onChange={(e) => setNewProduct({ ...newProduct, title: e.target.value })}
           placeholder="Titre"
@@ -55,6 +71,10 @@ const ProductList = () => {
           onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
           placeholder="Image URL"
         />
+        {/* <input
+          type="file"
+          onChange={(e) => setNewProduct({ ...newProduct, image: e.target.files[0] })}
+        /> */}
         <button onClick={createProduct}>Créer</button>
       </div>
       <table>
@@ -88,6 +108,7 @@ const ProductList = () => {
                 ) : (
                   <img
                     src={product.image}
+                    //src={`/uploads/${product.image}`} // Utilisez le chemin du fichier stocké dans la base de données
                     alt={product.title}
                     className="product-image"
                   />
@@ -113,3 +134,6 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+
+

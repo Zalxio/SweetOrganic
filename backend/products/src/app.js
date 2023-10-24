@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const productControllers = require('./controllers/product')
 const amqp = require('amqplib/callback_api');
+//const multer = require('multer');
+//const upload = multer({ dest: 'uploads/' }); // Répertoire de destination pour stocker les fichiers téléchargés
 
 amqp.connect('amqp://127.0.0.1', (error0, connection) => {
     if (error0) {
@@ -15,6 +17,10 @@ amqp.connect('amqp://127.0.0.1', (error0, connection) => {
 
         const app = express();
 
+        // Créez un middleware Multer pour gérer les données multipart/form-data
+        //const storage = multer.memoryStorage(); // Stockage en mémoire pour les fichiers
+        //const upload = multer({ storage });
+
         app.use((req, res, next) => {
             res.header('Access-Control-Allow-Origin', '*');
             res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -27,6 +33,10 @@ amqp.connect('amqp://127.0.0.1', (error0, connection) => {
         }));
 
         app.use(express.json());
+
+        //app.use(upload.single('image')); // Utilisez multer pour traiter le champ 'image' du formulaire
+
+        //app.use('/uploads', express.static('uploads')); // Rendre le répertoire 'uploads' accessible depuis le Web
 
         var router = express.Router();
 
