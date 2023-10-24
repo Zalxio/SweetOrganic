@@ -1,0 +1,12 @@
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 4rem;
+    background-color: rgba(134, 167, 59, .3) ;
+    border-radius: 25px;
+    align-items: flex-start;
+}
+
+form > *{
+    margin: 0.2rem;
+}
