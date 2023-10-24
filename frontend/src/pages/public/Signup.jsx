@@ -1,7 +1,7 @@
 import React from 'react';
-import GetProduct from '../../crud-products/getProduct';
-import Header from '../../components/Header';
 import { useNavigate } from "react-router-dom";
+import {default as NewUser} from '../../crud-users/CreateUser';
+import './signup.css'
 
 const Signup = () => {
 
@@ -12,13 +12,10 @@ const Signup = () => {
   }
 
   return (
-    <div>
-      <h1>Inscription</h1>
-      <GetProduct />
-      <button type="button" onClick={handleClick}>
-        Go create product
-      </button>
-    </div>
+    <main className='signup'>
+      <h1>Inscrivez-vous pour mieux profiter !</h1>
+      <NewUser/>
+    </main>
   );
 };
 

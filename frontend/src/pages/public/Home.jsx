@@ -1,8 +1,7 @@
 // Home.jsx
 import React from 'react';
-import GetProduct from '../../crud-products/getProduct';
-import Header from '../../components/Header';
 import { useNavigate } from "react-router-dom";
+import './home.css';
 
 const Home = () => {
   const navigate = useNavigate();

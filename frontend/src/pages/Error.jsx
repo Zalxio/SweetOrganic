@@ -15,7 +15,7 @@ const Error = () => {
 
   return (
     <>
-      <section className="main">
+      <section className="mainError">
         <h1>Vous vous êtes perdu !</h1>
         <p>
           Il semblerait que le petit poucet ai oublié quelque bonbons. Rattrappez-le en pousuivant votre chemin plus loin :

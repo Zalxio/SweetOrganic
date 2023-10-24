@@ -1,9 +1,14 @@
 #root {
   max-width: 1280px;
+<<<<<<< HEAD
   margin: 0 auto;
   /* padding: 2rem; */
+=======
+  margin: 0;
+  padding: 0;
+>>>>>>> bd8803f89cb74de082e376d8dae16004052f357b
   text-align: center;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .logo {

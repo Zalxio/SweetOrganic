@@ -8,7 +8,7 @@ const Products = () => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/createProduct");
+    navigate("/Products");
   }
 
   return (
