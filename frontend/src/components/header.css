@@ -1,0 +1,22 @@
+header{
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+
+nav ul li a{
+    padding: 10px 15px;
+    border: 2px solid white;
+    border-radius: 25px;
+    color: white;
+}
+
+.serviceNav ul li:not(:last-child){
+    scale: 0.85;
+} 
