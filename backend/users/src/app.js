@@ -42,6 +42,10 @@ amqp.connect('amqp://127.0.0.1', (error0, connection) => {
             .put(userControllers.putUser)
             .delete(userControllers.deleteUser);
 
+        // creation d un endpoint de route pour l'authentification
+        router.route('/users/authenticate')
+            .post(userControllers.authenticateUser);
+
         app.use('/apiu/', router);
 
         console.log('Listening to port: 8001');

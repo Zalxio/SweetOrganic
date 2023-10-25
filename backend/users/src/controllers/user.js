@@ -51,6 +51,45 @@ exports.deleteUser = async function (req, res) {
     return res.send(result);
 };
 
+// authentification d'un utilisateur simple sans hashage
+exports.authenticateUser = async function (req, res) {
+    const user = await userRepository.findOne({ name: req.body.name });
+    if (!user) {
+        return res.status(401).send('Utilisateur non trouvé');
+    }
+
+    // compare le mot de passe fourni avec le mot de passe stocké
+    if (req.body.password !== user.password) {
+        return res.status(401).send('Mot de passe incorrect');
+    }
+
+    // si tout est correct, renvoie un statut de réussite et le rôle de l'utilisateur
+    return res.status(200).json({ message: 'Utilisateur authentifié avec succès', role: user.role });
+};
+
+
+// authentification d'un utilisateur avec hashage
+/*exports.authenticateUser = async function (req, res) {
+    const user = await userRepository.findOne({ username: req.body.username });
+    if (!user) {
+        return res.status(401).send('Utilisateur non trouvé');
+    }
+
+    // compare le mot de passe fourni avec le mot de passe hashé stocké
+    bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
+        if (err) {
+            return res.status(500).send('Erreur interne du serveur');
+        }
+        if (!isMatch) {
+            return res.status(401).send('Mot de passe incorrect');
+        }
+
+        // si tout est correct, renvoie un statut de réussite
+        return res.status(200).send('Utilisateur authentifié avec succès');
+    });
+};*/
+
+
 /*
 exports.post = async function (req, res) {
     const user = await userRepository.findOne(req.params.id);

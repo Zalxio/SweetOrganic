@@ -17,7 +17,7 @@ function getProduct() {
   return (
     <>
       <div className="App">
-        <h1>Products</h1>
+        {/* <h1>Products</h1> */}
         <div className="products">
           {products.map((product) => (
             <div className="product" key={product.id}>
