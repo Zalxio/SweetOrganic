@@ -4,7 +4,7 @@ header{
     display: flex;
     justify-content: space-between;
     z-index: 100;
-    
+    background-color: rgb(71, 69, 69);
 }
 
 header > *{
@@ -29,9 +29,6 @@ nav ul{
     justify-content: flex-end;
     padding: 0;
     margin: 0;
-}
-
-nav ul li{
 }
 
 .link{

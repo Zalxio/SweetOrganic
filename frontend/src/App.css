@@ -21,6 +21,21 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.center-vertically {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 100% de la hauteur de la vue */
+}
+
+.center-horizontally {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajustez la hauteur en fonction de vos besoins */
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

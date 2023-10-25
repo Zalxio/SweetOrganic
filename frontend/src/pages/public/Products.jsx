@@ -12,7 +12,7 @@ const Products = () => {
   }
 
   return (
-    <div>
+    <div className="center-vertically">
       <h1>Products</h1>
       <GetProduct />
       <button type="button" onClick={handleClick}>

@@ -1,0 +1,15 @@
+.dashboard ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dashboard li {
+    margin-bottom: 10px;
+}
+
+.dashboard a {
+    color: #662266;
+    font-size: larger;
+}
