@@ -1,15 +1,36 @@
 Technologies utilisées
 ================
 Dans le dossier `frontend` et `backend`
-> RabbitMQ
-> ExpressJS
-> ReactJS
-> MySQL
-> Docker
-> ViteJS
+- RabbitMQ
+- ExpressJS
+- ReactJS
+- MySQL
+- Docker
+- ViteJS
 
 Pour crypter les mdp on utilise bcryptJS
 https://www.npmjs.com/package/bcrypt
+
+## Les micro-services
+
+- `product` : CRUD des produits
+- `user` : CRUD des utilisateurs
+- `order` : CRUD des commandes
+
+# Depuis Docker
+
+Se placer dans le dossier `SweetOrganic` et lancer la commande suivante :
+
+```bash
+docker-compose up
+```
+Ne pas oublier de supprimer les containers et les images après utilisation :
+
+```bash
+docker-compose down
+```
+
+# En local
 
 ## Installation
 ```bash
@@ -25,44 +46,4 @@ npm start # dans le dossier backend (pour chaque micro-services)
 ```
 ```bash
 npm run dev # dans le dossier frontend
-```
-
-## Accéder aux service crud
-
-### Micro-service `product`
-
-```bash	
-http://localhost:5173/ProductList # (Dashboard de tous les produits)
-```
-
-```bash
-http://localhost:5173/getProduct # GET (Récupérer tous les produits)
-```
-```bash
-http://localhost:5173/createProduct # POST (Créer un produit)
-```
-```bash
-http://localhost:5173/updateProduct # PUT (Modifier un produit)
-```
-```bash
-http://localhost:5173/deleteProduct # DELETE (Supprimer un produit)
-``` 
-
-### Micro-service `user`
-
-```bash	
-http://localhost:5173/UserList # (Dashboard de tous les utilisateurs)
-```
-
-```bash	
-http://localhost:5173/getUser # GET (Récupérer tous les utilisateurs)
-```
-```bash
-http://localhost:5173/createUser # POST (Créer un utilisateur)
-```
-```bash
-http://localhost:5173/updateUser # PUT (Modifier un utilisateur)
-```
-```bash
-http://localhost:5173/deleteUser # DELETE (Supprimer un utilisateur)
 ```

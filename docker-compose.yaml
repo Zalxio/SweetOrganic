@@ -1,0 +1,90 @@
+version: '3'
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql  # Nom de l'hôte du serveur MySQL
+      PMA_PORT: 3306        # Port MySQ
+    restart: always
+    networks:
+      - messageBroker
+  
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      #- ./mysql-data:/var/lib/mysql  # Permet de persister les données MySQL
+      - ./1.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./2.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./3.sql:/docker-entrypoint-initdb.d/3.sql
+    networks:
+      - messageBroker
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    container_name: rabbitmq
+    restart: always
+    networks:
+      - messageBroker
+
+  order:
+    ports:
+      - 8002:8002
+    container_name: order
+    restart: always
+    build: ./backend/order/
+    depends_on:
+      - rabbitmq
+    networks:
+      - messageBroker
+
+  products:
+    ports:
+      - 8000:8000
+    container_name: products 
+    restart: always
+    build: ./backend/products/
+    depends_on:
+      - rabbitmq
+    networks:
+      - messageBroker
+
+  users:
+    ports:
+      - 8001:8001
+    container_name: users
+    restart: always
+    build: ./backend/users/
+    depends_on:
+      - rabbitmq
+    networks:
+      - messageBroker
+
+  frontend:
+    ports:
+      - 127.0.0.1:5173:5173
+    container_name: frontend
+    restart: always
+    build: ./frontend/
+    depends_on:
+      - products
+      - order
+      - users
+    networks:
+      - messageBroker
+
+networks:
+  messageBroker:
+    driver: bridge
+

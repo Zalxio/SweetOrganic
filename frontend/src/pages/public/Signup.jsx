@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import {default as NewUser} from '../../crud-users/CreateUser';
+import {default as NewUser} from '../../crud-users/createUser';
 import './signup.css'
 
 const Signup = () => {

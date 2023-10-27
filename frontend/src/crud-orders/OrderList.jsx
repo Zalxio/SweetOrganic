@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './OrderList.css'; // Assurez-vous d'ajouter ce fichier CSS dans le même répertoire que votre composant
+import './OrderList.css'; 
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
-  const [newOrder, setNewOrder] = useState({ idUser: 0, articles: '', articlesPrices: null, price: 0});
+  const [newOrder, setNewOrder] = useState({ idUser: 0, articles: '', articlesPrices: '', price: 0});
   const [editOrder, setEditOrder] = useState(null);
   const [editIdUser, setEditIdUser] = useState(0); // Nouvel état pour le champ de titre en mode édition
   const [editArticles, setEditArticles] = useState(''); // Nouvel état pour le champ d'image en mode édition

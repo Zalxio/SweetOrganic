@@ -23,6 +23,7 @@ const Header = () =>{
         <header>
             <div className="left">
                 <h1>Sweet Organic</h1>
+                <h1>Sweet Organic</h1>
                 <nav className="mainNav">
                     <ul>
                         <li><NavLink to="/" className="link" style={isHereNav} >Accueil</NavLink></li>
