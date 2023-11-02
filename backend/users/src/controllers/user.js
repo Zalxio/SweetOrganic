@@ -1,7 +1,7 @@
 
 const { createConnection } = require('typeorm');
 const User = require('../entity/user');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcryptjs');
 var userRepository;
 
 // connection à la base de donnees
@@ -25,8 +25,19 @@ exports.postUsers = async function (req, res) {
     user.lastname = req.body.lastname
     user.age = req.body.age*/
 
+    // On creer un utilisateur 
     const user = await userRepository.create(req.body);
-    //encryptMDP(user, cb);
+    // on lui passe user comme role
+    user.role = "user";
+    // On crypte le mdp
+    /*console.log("Ohh")
+    const hash = bcrypt.hash(req.body.password, 10, function(err, hash) {
+        console.log(hash);
+        return hash;
+    });
+    console.log(hash);*/
+    user.password = await hashPassword(req.body.password);
+    
     const result = await userRepository.save(user);
     return res.send(result);
 };
@@ -67,56 +78,20 @@ exports.authenticateUser = async function (req, res) {
     return res.status(200).json({ message: 'Utilisateur authentifié avec succès', role: user.role });
 };
 
-
-// authentification d'un utilisateur avec hashage
-/*exports.authenticateUser = async function (req, res) {
-    const user = await userRepository.findOne({ username: req.body.username });
-    if (!user) {
-        return res.status(401).send('Utilisateur non trouvé');
-    }
-
-    // compare le mot de passe fourni avec le mot de passe hashé stocké
-    bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
-        if (err) {
-            return res.status(500).send('Erreur interne du serveur');
-        }
-        if (!isMatch) {
-            return res.status(401).send('Mot de passe incorrect');
-        }
-
-        // si tout est correct, renvoie un statut de réussite
-        return res.status(200).send('Utilisateur authentifié avec succès');
-    });
-};*/
-
-
-/*
-exports.post = async function (req, res) {
-    const user = await userRepository.findOne(req.params.id);
-    const result = await userRepository.save(user);
-    return res.send(result);
-};
-
-// A executer avant chaque appel à user.save() pour chiffrer le mdp
-function encryptMDP(user, callback) {
-    // On sort si le mdp n a pas changer
-    //if (!user.isModified('password')) return callback();
-  
-    // Si nouveau mdp on le chiffre
-    bcrypt.genSalt(5, function(err, salt) {
-        if (err) return callback(err);
-  
-        bcrypt.hash(user.password, salt, null, function(err, hash) {
-            if (err) return callback(err);
-            user.password = hash;
-            //callback();
+// chiffrer le mdp
+async function hashPassword (mdp) {
+    const hashedPassword = await new Promise((resolve, reject) => {
+        bcrypt.hash(mdp, 10, function(err, hash) {
+        if (err) reject(err)
+            resolve(hash)
         });
-    });
-    return user;
+    })
+
+    return hashedPassword
 }
-function cb(txt){
-    if (txt == null){
-        txt = "good"
-    } 
-    console.log(txt);
-}*/
+
+// verifier le mdp 
+async function verifyPassword(){
+    
+}
+
