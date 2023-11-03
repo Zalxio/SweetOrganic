@@ -1,6 +1,7 @@
 FROM node
 
 ENV DATABASE_HOST=users
+ENV DATABASE_TABLE=user
 
 WORKDIR /app/users
 

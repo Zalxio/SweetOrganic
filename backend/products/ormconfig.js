@@ -4,7 +4,7 @@ module.exports = {
     "port": process.env.PORT_BBDD || 3306,
     "username": process.env.USER_BBDD || "root",
     "password": process.env.PASSWORD_BBDD || "root",
-    "database": process.env.DATABASE_BBDD || "yt_node_admin",
+    "database": process.env.DATABASE_BBDD || "products",
     "synchronize": true,
     "logging": false,
     "entities": [

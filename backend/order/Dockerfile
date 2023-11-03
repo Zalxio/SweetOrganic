@@ -1,6 +1,7 @@
 FROM node
 
 ENV DATABASE_HOST=orders
+ENV DATABASE_TABLE=order_product
 
 WORKDIR /app/orders
 

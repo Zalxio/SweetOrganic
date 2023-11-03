@@ -1,1 +1,2 @@
-CREATE DATABASE yt_node_admin;
+CREATE DATABASE products;
+

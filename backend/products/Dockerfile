@@ -1,6 +1,7 @@
 FROM node
 
-ENV DATABASE_HOST=yt_node_admin
+ENV DATABASE_HOST=products
+ENV DATABASE_TABLE=product
 
 WORKDIR /app/products
 

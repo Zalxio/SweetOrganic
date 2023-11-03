@@ -4,10 +4,12 @@ import './ProductList.css'; // Assurez-vous d'ajouter ce fichier CSS dans le mê
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({ title: '', image: '', likes: 0 });
+  const [newProduct, setNewProduct] = useState({ title: '', image: '', likes: 0, price: 0, description: '' });
   const [editProduct, setEditProduct] = useState(null);
   const [editTitle, setEditTitle] = useState(''); // Nouvel état pour le champ de titre en mode édition
   const [editImage, setEditImage] = useState(''); // Nouvel état pour le champ d'image en mode édition
+  const [editPrice, setEditPrice] = useState(''); // Nouvel état pour le champ de prix en mode édition
+  const [editDescription, setEditDescription] = useState(''); // Nouvel état pour le champ de description en mode édition
 
   useEffect(() => {
     fetchProducts();
@@ -54,6 +56,8 @@ const ProductList = () => {
     // Pré-remplissez les champs d'édition avec les données actuelles du produit
     setEditTitle(product.title);
     setEditImage(product.image);
+    setEditPrice(product.price);
+    setEditDescription(product.description);
   };
 
   return (
@@ -75,6 +79,16 @@ const ProductList = () => {
           type="file"
           onChange={(e) => setNewProduct({ ...newProduct, image: e.target.files[0] })}
         /> */}
+        <input 
+          value={newProduct.price}
+          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+          placeholder="Prix"
+        />
+        <input
+          value={newProduct.description}
+          onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+          placeholder="Description"
+        />
         <button onClick={createProduct}>Créer</button>
       </div>
       <table>
@@ -82,6 +96,8 @@ const ProductList = () => {
           <tr>
             <th>Titre</th>
             <th>Image</th>
+            <th>Prix</th>
+            <th>Description</th>
             <th>Likes</th>
             <th>Actions</th>
           </tr>
@@ -114,10 +130,30 @@ const ProductList = () => {
                   />
                 )}
               </td>
+              <td>
+                {editProduct === product ? (
+                  <input
+                    value={editPrice}
+                    onChange={(e) => setEditPrice(e.target.value)}
+                  />
+                ) : (
+                  product.price
+                )}
+              </td>
+              <td>
+                {editProduct === product ? (
+                  <input
+                    value={editDescription}
+                    onChange={(e) => setEditDescription(e.target.value)}
+                  />
+                ) : (
+                  product.description
+                )}
+              </td>
               <td>{product.likes} likes</td>
               <td>
                 {editProduct === product ? (
-                  <button onClick={() => updateProduct(product.id, { title: editTitle, image: editImage })}>Enregistrer</button>
+                  <button onClick={() => updateProduct(product.id, { title: editTitle, image: editImage, price: editPrice, description: editDescription })}>Enregistrer</button>
                 ) : (
                   <>
                     <button onClick={() => editProductHandler(product)}>Modifier</button>
@@ -134,6 +170,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-
-

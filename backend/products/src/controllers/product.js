@@ -1,6 +1,7 @@
 const Product = require('../entity/product');
 const { createConnection } = require('typeorm');
 var productRepository;
+// const authenticateToken = require('../authMiddleware');
 
 createConnection().then(db => {
      productRepository = db.getRepository(Product);
@@ -19,6 +20,16 @@ exports.postProducts = async function (req, res) {
     //channel.sendToQueue('products_created', Buffer.from(JSON.stringify(result)));
     return res.send(result);
 };
+
+/*exports.postProducts = async function (req, res) {
+    // Utilisez le middleware pour vérifier l'authentification
+    authenticateToken(req, res, async () => {
+        // Si l'authentification est réussie, continuez avec la création du produit
+        const product = await productRepository.create(req.body);
+        const result = await productRepository.save(product);
+        return res.send(result);
+    });
+}*/
 
 /*exports.postProducts = async function (req, res) {
     const product = await productRepository.create(req.body);

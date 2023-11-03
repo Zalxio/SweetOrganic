@@ -19,6 +19,12 @@ const ProductSchema = new EntitySchema({
         likes: {
             type: 'int',
             default: 0
+        },
+        price: {
+            type: 'float'
+        },
+        description: {
+            type: 'varchar'
         }
     }
 });

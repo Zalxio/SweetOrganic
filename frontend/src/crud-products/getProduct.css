@@ -35,7 +35,7 @@
 .product h4 {
     font-size: 14px;
     margin: 10px 0;
-    color: #007bff;
+    color: rgba(201, 231, 133, 0.6);
 }
 
 .product img {

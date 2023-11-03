@@ -18,6 +18,10 @@ const Signin = () => {
       if (response.status === 200) {
         setIsLoggedIn(true);
         setRole(response.data.role); // Mettez à jour le rôle avec la réponse de l'API
+        if (response.data.role === 'admin') {
+          // Stockez le rôle de l'utilisateur dans le stockage local ou une session
+          localStorage.setItem('userRole', 'admin');
+        }
       } else {
         alert('Échec de la connexion');
       }
@@ -26,12 +30,27 @@ const Signin = () => {
     }
   }
 
-  function handleClick() {
+  /*function handleClick() {
     if (role === 'admin') { // Si l'utilisateur est un administrateur
       navigate("/dashboard/*"); // Redirigez vers le tableau de bord d'administration
     } else {
       navigate("/products");
     }
+  }*/
+
+  function handleClick() {
+    if (role === 'admin' || localStorage.getItem('userRole') === 'admin') {
+      navigate("/dashboard"); // Redirigez vers le tableau de bord d'administration
+    } else if (role === 'user') {
+      navigate("/products");
+    }
+  }
+
+  const handleLogout = () => {
+    // Supprimez le rôle de l'utilisateur du stockage local
+    localStorage.removeItem('userRole');
+    // Redirigez l'utilisateur vers la page de connexion
+    navigate("/signin");
   }
 
   return (
@@ -40,9 +59,14 @@ const Signin = () => {
       {isLoggedIn ? (
         <>
           {role === 'admin' ? (
-            <button type="button" onClick={handleClick}>
-              Go to Dashboard
-            </button>
+            <>
+              <button type="button" onClick={handleClick}>
+                Go to Dashboard
+              </button>
+              <button type="button" onClick={handleLogout}>
+                Déconnexion
+              </button>
+            </>
           ) : (
             <button type="button" onClick={handleClick}>
               Go to Products

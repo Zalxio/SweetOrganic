@@ -7,7 +7,7 @@ services:
     container_name: phpmyadmin
     environment:
       PMA_HOST: mysql  # Nom de l'hôte du serveur MySQL
-      PMA_PORT: 3306        # Port MySQ
+      PMA_PORT: 3306   # Port MySQ
     restart: always
     networks:
       - messageBroker
@@ -22,9 +22,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       #- ./mysql-data:/var/lib/mysql  # Permet de persister les données MySQL
-      - ./1.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./2.sql:/docker-entrypoint-initdb.d/2.sql
-      - ./3.sql:/docker-entrypoint-initdb.d/3.sql
+      # - ./1.sql:/docker-entrypoint-initdb.d/1.sql
+      # - ./2.sql:/docker-entrypoint-initdb.d/2.sql
+      # - ./3.sql:/docker-entrypoint-initdb.d/3.sql
+      # - ./01_create_database.sql:/docker-entrypoint-initdb.d/01_create_database.sql
+      # - ./02_insert_data.sql:/docker-entrypoint-initdb.d/02_insert_data.sql
+      - ./sql:/docker-entrypoint-initdb.d/
     networks:
       - messageBroker
 
@@ -46,6 +49,7 @@ services:
     build: ./backend/order/
     depends_on:
       - rabbitmq
+      - mysql
     networks:
       - messageBroker
 
@@ -57,6 +61,7 @@ services:
     build: ./backend/products/
     depends_on:
       - rabbitmq
+      - mysql
     networks:
       - messageBroker
 
@@ -68,6 +73,7 @@ services:
     build: ./backend/users/
     depends_on:
       - rabbitmq
+      - mysql
     networks:
       - messageBroker
 

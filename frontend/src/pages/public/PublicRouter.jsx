@@ -4,8 +4,8 @@ import {Layout, Home, Products, Signin, Signup} from '../public/index';
 import Error from "../Error";
 import Dashboard from "./Dashboard";
 
-
 const PublicRouter = () => {
+
     return (
         <Routes>
             <Route element={<Layout/>}>

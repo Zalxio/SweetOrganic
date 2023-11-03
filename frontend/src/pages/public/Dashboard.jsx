@@ -19,13 +19,33 @@
 // export default Dashboard
 
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { ProductList, UserList, OrderList } from '../public/index';
 import './dashboard.css';
 
 const Dashboard = () => {
+  const userRole = localStorage.getItem('userRole'); // Récupérez le rôle de l'utilisateur depuis le stockage local
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Supprimez le rôle de l'utilisateur du stockage local
+    localStorage.removeItem('userRole');
+    // Redirigez l'utilisateur vers la page de connexion
+    navigate("/signin");
+  };
+
+  if (userRole !== 'admin') {
+    return (
+      <div className="center-horizontally dashboard">
+        <p>Vous n'avez pas la permission d'accéder à cette page.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="center-horizontally dashboard">
+      <button onClick={handleLogout}>Déconnexion</button>
       <nav>
         <table>
           <tbody>

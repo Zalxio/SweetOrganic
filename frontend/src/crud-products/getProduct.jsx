@@ -22,8 +22,9 @@ function getProduct() {
           {products.map((product) => (
             <div className="product" key={product.id}>
               <h3>{product.title}</h3>
-              <h4>{product.price}</h4>
               <img src={product.image} alt={product.title} />
+              <h4>Prix {product.price} €</h4>
+              <p>{product.description}</p>
               <p>❤️{product.likes}</p>
             </div>
           ))}
