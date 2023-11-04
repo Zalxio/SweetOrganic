@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import {Layout, Home, Products, Signin, Signup} from '../public/index';
+import {Layout, Home, Products, Signin, Signup, ProductDetail, CartProduct} from '../public/index';
 import Error from "../Error";
 import Dashboard from "./Dashboard";
 
@@ -14,6 +14,8 @@ const PublicRouter = () => {
                 <Route path='/signin/*' element={<Signin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/dashboard/*' element={<Dashboard />} />
+                <Route path="/products/:id" element={<ProductDetail />} />
+                <Route path="/cart" element={<CartProduct />} />
 
                 <Route path="*" element={<Error/>}/>
             </Route>

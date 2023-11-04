@@ -21,6 +21,8 @@ const Signin = () => {
         if (response.data.role === 'admin') {
           // Stockez le rôle de l'utilisateur dans le stockage local ou une session
           localStorage.setItem('userRole', 'admin');
+        } else if (response.data.role === 'user') {
+          localStorage.setItem('userRole', 'user');
         }
       } else {
         alert('Échec de la connexion');
@@ -37,7 +39,7 @@ const Signin = () => {
       navigate("/products");
     }
   }*/
-
+  
   function handleClick() {
     if (role === 'admin' || localStorage.getItem('userRole') === 'admin') {
       navigate("/dashboard"); // Redirigez vers le tableau de bord d'administration
@@ -47,10 +49,17 @@ const Signin = () => {
   }
 
   const handleLogout = () => {
-    // Supprimez le rôle de l'utilisateur du stockage local
-    localStorage.removeItem('userRole');
-    // Redirigez l'utilisateur vers la page de connexion
-    navigate("/signin");
+    if (localStorage.getItem('userRole') === 'admin') {
+      // Supprimez le rôle de l'utilisateur du stockage local
+      localStorage.removeItem('userRole');
+      // Redirigez l'utilisateur vers la page de connexion
+      navigate("/signin");
+    } else if (localStorage.getItem('userRole') === 'user') {
+      // Supprimez le rôle de l'utilisateur du stockage local
+      localStorage.removeItem('userRole');
+      // Redirigez l'utilisateur vers la page de connexion
+      navigate("/signin");
+    }
   }
 
   return (
@@ -61,7 +70,7 @@ const Signin = () => {
           {role === 'admin' ? (
             <>
               <button type="button" onClick={handleClick}>
-                Go to Dashboard
+                Aller au tableau de bord
               </button>
               <button type="button" onClick={handleLogout}>
                 Déconnexion
@@ -69,7 +78,7 @@ const Signin = () => {
             </>
           ) : (
             <button type="button" onClick={handleClick}>
-              Go to Products
+              Aller vers les produits
             </button>
           )}
         </>
@@ -91,7 +100,7 @@ const Signin = () => {
               onChange={e => setPassword(e.target.value)}
             />
             <button type="button" onClick={handleLogin}>
-              Login
+              Se connecter
             </button>
           </main>
         </form>

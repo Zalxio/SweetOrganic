@@ -22,20 +22,22 @@ const Header = () =>{
     return (
         <header>
             <div className="left">
-                <h1>Sweet Organic</h1>
-                <h1>Sweet Organic</h1>
+                <img src="/sw.png" alt="logo" />
+                <h1><span className="sweet">Sweet</span> <span className="organic">Organic</span></h1>
                 <nav className="mainNav">
                     <ul>
                         <li><NavLink to="/" className="link" style={isHereNav} >Accueil</NavLink></li>
-                        <li><NavLink to="/products" className="link" style={isHereNav}>Products</NavLink></li>
+                        <li><NavLink to="/products" className="link" style={isHereNav}>Produits</NavLink></li>
                     </ul>
                 </nav>
             </div>
-            
             <nav className="serviceNav">
                 <ul>
-                    <li><NavLink to="/signup" className="link" style={isHereServices}>Sign up</NavLink></li>
-                    <li><NavLink to="/signin" className="link" style={isHereServices}>Sign in</NavLink></li>
+                    <li><NavLink to="/signup" className="link" style={isHereServices}>Se connecter</NavLink></li>
+                    <li><NavLink to="/signin" className="link" style={isHereServices}>S'inscrire</NavLink></li>
+                    <li><NavLink to="/cart" className="link" style={isHereServices}>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </NavLink></li>
                 </ul>
             </nav>
         </header>

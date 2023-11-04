@@ -26,16 +26,16 @@ const createUser = () => {
   return (
     <>
       <form onSubmit={createUser}>
-        <label htmlFor="name">Nom </label>
+        <label htmlFor="name">Nom</label>
         <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Huge" name="name" />
-        <label htmlFor="last name">Prénom </label>
+        <label htmlFor="last name">Prénom</label>
         <input value={lastname} onChange={e => setLastname(e.target.value)} type="text" placeholder="Lupont" name="lastname" />
         <label htmlFor="username">Pseudo</label>
         <input value={username} onChange={e => setUsername(e.target.value)} type="text" placeholder="Dupont" name="username" required />
 
         <label htmlFor="psw">Mot de passe</label>
         <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="********" name="password" required />
-        <button >Créer</button>
+        <button>S'inscrire</button>
       </form>
       {/*users.map((user) => (
       <div key={user.id}>
