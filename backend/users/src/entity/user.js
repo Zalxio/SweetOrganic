@@ -40,23 +40,4 @@ const UserSchema = new EntitySchema({
     }
 });
 
-/*UserSchema.pre('save', function(callback) {
-    var user = this;
-  
-    // On sort si le mdp n a pas changer
-    if (!user.isModified('password')) return callback();
-  
-    // Si nouveau mdp on le chiffre
-    bcrypt.genSalt(5, function(err, salt) {
-        if (err) return callback(err);
-  
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return callback(err);
-            user.password = hash;
-            callback();
-        });
-    });
-});*/
-
 module.exports = UserSchema;
-
