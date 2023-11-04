@@ -16,7 +16,7 @@ exports.hashPassword = hashPassword;
 
 // verifier le mdp
 async function verifyPassword (password, hash) {
-    await bcrypt.compare(password, hash)
+    return await bcrypt.compare(password, hash)
     .then((res) => {
         console.log(res);
         return res;

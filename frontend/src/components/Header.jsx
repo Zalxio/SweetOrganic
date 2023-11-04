@@ -33,8 +33,8 @@ const Header = () =>{
             </div>
             <nav className="serviceNav">
                 <ul>
-                    <li><NavLink to="/signup" className="link" style={isHereServices}>Se connecter</NavLink></li>
-                    <li><NavLink to="/signin" className="link" style={isHereServices}>S'inscrire</NavLink></li>
+                    <li><NavLink to="/signup" className="link" style={isHereServices}>S'inscrire</NavLink></li>
+                    <li><NavLink to="/signin" className="link" style={isHereServices}>Se connecter</NavLink></li>
                     <li><NavLink to="/cart" className="link" style={isHereServices}>
                         <i class="fa-solid fa-cart-shopping"></i>
                     </NavLink></li>

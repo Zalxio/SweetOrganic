@@ -1,4 +1,3 @@
-
 const { createConnection } = require('typeorm');
 const User = require('../entity/user');
 const {hashPassword, verifyPassword} = require('./auth');
@@ -45,7 +44,7 @@ exports.deleteUser = async function (req, res) {
 };
 
 // authentification d'un utilisateur
-exports.authenticateUser = async function (req, res) {
+/*exports.authenticateUser = async function (req, res) {
     const user = await userRepository.findOne({ username: req.body.name });
     if (!user) {
         return res.status(401).send('Utilisateur non trouvé');
@@ -58,4 +57,24 @@ exports.authenticateUser = async function (req, res) {
 
     // si tout est correct, renvoie un statut de réussite et le rôle de l'utilisateur
     return res.status(200).json({ message: 'Utilisateur authentifié avec succès', role: user.role });
+};*/
+
+// authentification d'un utilisateur
+exports.authenticateUser = async function (req, res) {
+    const user = await userRepository.findOne({ username: req.body.name });
+    if (!user) {
+        return res.status(401).json({ message: 'Utilisateur non trouvé' });
+    }
+    
+    // compare le mot de passe fourni avec le hash stocké
+    const passwordMatch = await verifyPassword(req.body.password, user.password);
+    console.log('Password Match:', passwordMatch);
+
+    if (!passwordMatch) {
+        return res.status(401).json({ message: 'Mot de passe incorrect' });
+    }
+
+    // si tout est correct, renvoie un statut de réussite et le rôle de l'utilisateur
+    return res.status(200).json({ message: 'Utilisateur authentifié avec succès', role: user.role });
 };
+

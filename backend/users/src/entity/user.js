@@ -1,4 +1,5 @@
 const { EntitySchema } = require('typeorm');
+
 const UserRole = {
     ADMIN : "admin",
     USER : "user"
@@ -15,8 +16,11 @@ const UserSchema = new EntitySchema({
         },
         role: {
             type: "enum",
-            enum: UserRole,
-            default: UserRole.USER
+            //enum: UserRole,
+            //default: UserRole // UserRole.USER ou UserRole.ADMIN
+            type: "enum",
+            enum: ['admin', 'user'],
+            default: 'user'
         },
         username:{
             type: 'varchar',

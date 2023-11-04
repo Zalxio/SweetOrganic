@@ -10,7 +10,7 @@ const Signin = () => {
 
   const navigate = useNavigate();
 
-  async function handleLogin() {
+  /*async function handleLogin() {
     try {
       const response = await axios.post('/apiu/users/authenticate', { name, password });
   
@@ -30,37 +30,40 @@ const Signin = () => {
     } catch (error) {
       alert('Échec de la connexion');
     }
+  }*/
+
+  async function handleLogin() {
+    try {
+        const response = await axios.post('/apiu/users/authenticate', { name, password });
+        console.log('Rôle de l\'utilisateur:', response.data.role);
+        
+        if (response.status === 200) {
+            setIsLoggedIn(true);
+            setRole(response.data.role);
+        }
+    } catch (error) {
+      // Gérez les erreurs d'authentification ici
+      if (error.response && error.response.status === 401) {
+        setError("Nom d'utilisateur ou mot de passe incorrect");
+      } else {
+        setError("Une erreur s'est produite lors de l'authentification");
+      }
+    }
   }
 
-  /*function handleClick() {
-    if (role === 'admin') { // Si l'utilisateur est un administrateur
-      navigate("/dashboard/*"); // Redirigez vers le tableau de bord d'administration
-    } else {
-      navigate("/products");
-    }
-  }*/
-  
   function handleClick() {
-    if (role === 'admin' || localStorage.getItem('userRole') === 'admin') {
-      navigate("/dashboard"); // Redirigez vers le tableau de bord d'administration
+    if (role === 'admin') {
+        navigate("/dashboard/*"); // Redirigez vers le tableau de bord d'administration
     } else if (role === 'user') {
-      navigate("/products");
+        navigate("/products");
     }
   }
 
   const handleLogout = () => {
-    if (localStorage.getItem('userRole') === 'admin') {
-      // Supprimez le rôle de l'utilisateur du stockage local
-      localStorage.removeItem('userRole');
-      // Redirigez l'utilisateur vers la page de connexion
-      navigate("/signin");
-    } else if (localStorage.getItem('userRole') === 'user') {
-      // Supprimez le rôle de l'utilisateur du stockage local
-      localStorage.removeItem('userRole');
-      // Redirigez l'utilisateur vers la page de connexion
-      navigate("/signin");
-    }
-  }
+    setIsLoggedIn(false);
+    setRole(""); // Réinitialisez le rôle
+    navigate("/signin"); // Redirigez vers la page de connexion
+  };
 
   return (
     <div className="center-vertically">
@@ -77,9 +80,14 @@ const Signin = () => {
               </button>
             </>
           ) : (
-            <button type="button" onClick={handleClick}>
-              Aller vers les produits
-            </button>
+            <>
+              <button type="button" onClick={handleClick}>
+                Aller vers les produits
+              </button>
+              <button type="button" onClick={handleLogout}>
+                Déconnexion
+              </button>
+            </>
           )}
         </>
       ) : (
