@@ -21,12 +21,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      #- ./mysql-data:/var/lib/mysql  # Permet de persister les données MySQL
-      # - ./1.sql:/docker-entrypoint-initdb.d/1.sql
-      # - ./2.sql:/docker-entrypoint-initdb.d/2.sql
-      # - ./3.sql:/docker-entrypoint-initdb.d/3.sql
-      # - ./01_create_database.sql:/docker-entrypoint-initdb.d/01_create_database.sql
-      # - ./02_insert_data.sql:/docker-entrypoint-initdb.d/02_insert_data.sql
       - ./sql:/docker-entrypoint-initdb.d/
     networks:
       - messageBroker

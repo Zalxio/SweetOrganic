@@ -83,6 +83,12 @@ async function startServer() {
                         res.header('Access-Control-Allow-Origin', '*');
                         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
                         res.header('Access-Control-Allow-Headers', 'Content-Type');
+                        // Ajoutez ici les en-têtes "Permissions-Policy" nécessaires
+                        res.header('Permissions-Policy', 'origin-trials=browsing-topics');
+                        res.header('Permissions-Policy', 'origin-trials=attribution-reporting');
+                        res.header('Permissions-Policy', 'origin-trials=run-ad-auction');
+                        res.header('Permissions-Policy', 'origin-trials=join-ad-interest-group');
+                        res.header('Permissions-Policy', 'origin-trials=idle-detection');
                         next();
                     });
     
@@ -139,6 +145,7 @@ startServer()
     .then((serverInfo) => {
         // Handle server started successfully
         // You can access the app, server, and connection from serverInfo
+        console.log('Server started successfully: ', serverInfo);
     })
     .catch((error) => {
         // Handle any errors that occurred during server startup

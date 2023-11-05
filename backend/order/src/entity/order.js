@@ -18,6 +18,11 @@ const UserSchema = new EntitySchema({
         articlesPrices: {
             type: 'int'
         },
+        status: {
+            type: 'enum',
+            enum: ['pending', 'success', 'failed'],
+            default: 'pending'
+        },
         price: {
             type: 'int',
             default: 0
