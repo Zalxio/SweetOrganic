@@ -4,9 +4,10 @@ Dans le dossier `frontend` et `backend`
 - RabbitMQ
 - ExpressJS
 - ReactJS
-- MySQL
+- MySQL, TypeORM
 - Docker
 - ViteJS
+- Redux
 
 Pour crypter les mdp on utilise bcryptJS
 https://www.npmjs.com/package/bcrypt
