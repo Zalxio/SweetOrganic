@@ -16,6 +16,7 @@ https://www.npmjs.com/package/bcrypt
 - `product` : CRUD des produits
 - `user` : CRUD des utilisateurs
 - `order` : CRUD des commandes
+- `payment` : CRUD gestion des paiements
 
 # Depuis Docker
 
@@ -24,11 +25,13 @@ Se placer dans le dossier `SweetOrganic` et lancer la commande suivante :
 ```bash
 docker-compose up
 ```
-Redemarrer les containers (orders, users, products) soit dans un autre terminal avec la commande suivante soit en faisant `CTRL+C` et en relançant la commande précédente :
+Redemarrer les containers (orders, users, products) une fois les services démarrer, soit dans un autre terminal avec la commande suivante soit en faisant `CTRL+C` et en relançant la commande précédente :
 
 ```bash
 docker-compose restart
 ```
+On peut également les redémarrer dans l'inteface de Docker Desktop.
+
 Ne pas oublier de supprimer les containers et les images après utilisation :
 
 ```bash
