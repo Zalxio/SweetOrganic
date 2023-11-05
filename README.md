@@ -56,3 +56,11 @@ npm start # dans le dossier backend (pour chaque micro-services)
 ```bash
 npm run dev # dans le dossier frontend
 ```
+# Pour tester
+
+## Accès en mode utilisateur lambda :
+- Nom d'utilisateur : rd3
+- Mot de passe : 1234
+## Accès en mode admin :
+- Nom d'utilisateur : sweet
+- Mot de passe : 13c6f3
