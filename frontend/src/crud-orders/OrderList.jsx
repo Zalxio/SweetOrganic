@@ -4,20 +4,36 @@ import './OrderList.css';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
-  const [newOrder, setNewOrder] = useState({ idUser: 0, articles: '', articlesPrices: '', price: 0});
+  const [newOrder, setNewOrder] = useState({ idUser: 0, articles: '', articlesPrices: '', price: 0 });
   const [editOrder, setEditOrder] = useState(null);
-  const [editIdUser, setEditIdUser] = useState(0); // Nouvel état pour le champ de titre en mode édition
-  const [editArticles, setEditArticles] = useState(''); // Nouvel état pour le champ d'image en mode édition
+  const [editIdUser, setEditIdUser] = useState(0);
+  const [editArticles, setEditArticles] = useState('');
   const [editArticlesPrices, setEditArticlesPrices] = useState(null);
   const [editPrice, setEditPrice] = useState(0);
+  const [editStatus, setEditStatus] = useState('pending');
+  const [editDate, setEditDate] = useState(new Date());
+  const [name, setName] = useState('');
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     fetchOrders();
+    fetchProduct();
+    fetchUser();
   }, []);
 
   const fetchOrders = async () => {
     const response = await axios.get('/apio/orders');
     setOrders(response.data);
+  };
+
+  const fetchProduct = async () => {
+    const response = await axios.get('/apip/products');
+    setProduct(response.data);
+  };
+
+  const fetchUser = async () => {
+    const response = await axios.get('/apiu/users');
+    setName(response.data);
   };
 
   const createOrder = async () => {
@@ -36,20 +52,22 @@ const OrderList = () => {
     fetchOrders();
   };
 
-  const editOrderHandler = (order) => {
+  const editOrderHandler = (order, product, user) => {
     setEditOrder(order);
-    // Pré-remplissez les champs d'édition avec les données actuelles du produit
     setEditIdUser(order.idUser);
     setEditArticles(order.articles);
     setEditArticlesPrices(order.articlesPrices);
     setEditPrice(order.price);
+    setEditStatus(order.status);
+    setProduct(product.price);
+    setUser(user.name);
   };
 
   return (
     <div className="order-list">
       <h1>Commandes</h1>
       <div className="order-form">
-        <input
+        {/* <input
           value={newOrder.idUser}
           onChange={(e) => setNewOrder({ ...newOrder, idUser: e.target.value })}
           placeholder="Id User"
@@ -60,24 +78,25 @@ const OrderList = () => {
           placeholder="Articles"
         />
         <input
-            value={newOrder.articlesPrices}
-            onChange={(e) => setNewOrder({ ...newOrder, articlesPrices: e.target.value })}
-            placeholder="Articles Prices"
+          value={newOrder.articlesPrices}
+          onChange={(e) => setNewOrder({ ...newOrder, articlesPrices: e.target.value })}
+          placeholder="Articles Prices"
         />
         <input
-            value={newOrder.price}
-            onChange={(e) => setNewOrder({ ...newOrder, price: e.target.value })}
-            placeholder="Price"
+          value={newOrder.price}
+          onChange={(e) => setNewOrder({ ...newOrder, price: e.target.value })}
+          placeholder="Price"
         />
-        <button onClick={createOrder}>Créer</button>
+        <button onClick={createOrder}>Créer</button> */}
       </div>
       <table>
         <thead>
           <tr>
-            <th>Id User</th>
+            <th>Id Utilisateur</th>
             <th>Articles</th>
-            <th>Articles Prices</th>
-            <th>Price</th>
+            <th>Prix de l'article</th>
+            <th>Prix</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -108,32 +127,59 @@ const OrderList = () => {
                   />
                 )}
               </td>
-                <td>
-                    {editOrder === order ? (
-                    <input
-                        value={editArticlesPrices}
-                        onChange={(e) => setEditArticlesPrices(e.target.value)}
-                    />
-                    ) : (
-                    order.articlesPrices
-                    )}
-                </td>
-                <td>
-                    {editOrder === order ? (
-                    <input
-                        value={editPrice}
-                        onChange={(e) => setEditPrice(e.target.value)}
-                    />
-                    ) : (
-                    order.price
-                    )}
-                </td>
               <td>
                 {editOrder === order ? (
-                  <button onClick={() => updateOrder(order.id, { idUser: editIdUser, articles: editArticles, articlesPrices: editArticlesPrices, price: editPrice })}>Enregistrer</button>
+                  <input
+                    value={editArticlesPrices}
+                    onChange={(e) => setEditArticlesPrices(e.target.value)}
+                  />
+                ) : (
+                  order.articlesPrices
+                )}
+              </td>
+              <td>
+                {editOrder === order ? (
+                  <input
+                    value={editPrice}
+                    onChange={(e) => setEditPrice(e.target.value)}
+                  />
+                ) : (
+                  order.price
+                )}
+              </td>
+              <td>
+                {editOrder === order ? (
+                  <select
+                    value={editStatus}
+                    onChange={(e) => setEditStatus(e.target.value)}
+                  >
+                    <option value="pending">En attente</option>
+                    <option value="success">Succès</option>
+                    <option value="failed">Échec</option>
+                  </select>
+                ) : (
+                  order.status
+                )}
+              </td>
+              <td>
+                {editOrder === order ? (
+                  <button
+                    onClick={() =>
+                      updateOrder(order.id, {
+                        idUser: editIdUser,
+                        articles: editArticles,
+                        articlesPrices: editArticlesPrices,
+                        price: editPrice,
+                        status: editStatus
+                      })
+                    }
+                  >
+                    Enregistrer
+                  </button>
                 ) : (
                   <>
-                    <button onClick={() => editOrderHandler(order)}>Modifier</button>
+                    {/* <button onClick={() => edit */}
+                    <button onClick={() => editOrderHandler(order, product, user)}>Modifier</button>
                     <button onClick={() => deleteOrder(order.id)}>Supprimer</button>
                   </>
                 )}
@@ -147,4 +193,3 @@ const OrderList = () => {
 };
 
 export default OrderList;
-

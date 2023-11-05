@@ -41,17 +41,17 @@ const Dashboard = () => {
           <tbody>
             <tr>
               <td>
-                <Link to="/dashboard/productslist">Products List</Link>
+                <Link to="/dashboard/productslist">Liste des produits</Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/dashboard/userlist">User List</Link>
+                <Link to="/dashboard/userlist">Liste des utilisateurs</Link>
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/dashboard/orderlist">Order List</Link>
+                <Link to="/dashboard/orderlist">Liste des commandes</Link>
               </td>
             </tr>
           </tbody>

@@ -43,8 +43,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `role`, `username`, `password`, `name`, `lastname`, `age`) VALUES
-(1, 'user', 'rd3', '$2a$10$WybF14idVfSzJabsyWMupeGm/DjdqVrBoS4tZhm/birq66b7ifSKy', 'rd3', 'rd3', 0),
-(2, 'admin', 'sweet', '$2a$10$pQVSKvNct1Qy5LDsbdwgkOJ4kT1JrFkTvfDQHU2BxT8N7X9y09GR.', 'sweet', 'sweet', 0);
+(1, 'user', 'rd3', '$2a$10$WybF14idVfSzJabsyWMupeGm/DjdqVrBoS4tZhm/birq66b7ifSKy', 'rd3', 'rd3', 23),
+(2, 'admin', 'sweet', '$2a$10$pQVSKvNct1Qy5LDsbdwgkOJ4kT1JrFkTvfDQHU2BxT8N7X9y09GR.', 'sweet', 'sweet', 40);
 
 --
 -- Index pour les tables déchargées

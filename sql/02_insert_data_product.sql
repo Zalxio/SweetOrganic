@@ -42,10 +42,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `image`, `likes`, `price`, `description`) VALUES
-(8, 'Pomme', 'https://www.academiedugout.fr/images/17157/1200-auto/pomme_000.jpg?poix=50&poiy=50', 0, 12, 'Ceci est une pomme'),
-(9, 'Framboise', 'https://www.jaimefruitsetlegumes.ca/wp-content/uploads/2019/09/framboises-scaled-e1644263837892.jpg', 0, 5, 'Ceci est une framboise'),
-(10, 'Orange', 'https://www.poder.fr/wp-content/uploads/2018/04/shutterstock_342874121-1200x876.jpg', 0, 6, 'Ceci est une orange'),
-(11, 'Poire', 'https://www.academiedugout.fr/images/17155/370-274/ffffff/poire_000.jpg?poix=50&poiy=50', 0, 20, 'Ceci est une poire');
+(8, 'Bonbon à la pomme', 'https://www.candybulle.com/wp-content/uploads/2020/06/pomme-citrique.jpg', 2, 12, 'Ceci est un bonbon à la pomme'),
+(9, 'Bonbon à la fraise', 'https://www.vracfacile.fr/1660-large_default/bonbon-fraise-bio-100-gr.jpg', 33, 5, 'Ceci est un bonbon à la fraise'),
+(10, 'Bonbon goût orange', 'https://i.etsystatic.com/33146936/r/il/53ef80/3778782943/il_794xN.3778782943_7zf6.jpg', 5, 6, 'Ceci est un bobon goût orange'),
+(11, 'Bobon à la poire', 'https://www.lesfleurons-apt.com/2194-large_default/pate-de-fruit-poire-90gr.jpg', 10, 20, 'Ceci est un bonbon à la poire');
 
 --
 -- Index pour les tables déchargées
